@@ -22,8 +22,11 @@ jobs:
   include:
     # test stage: run Node in all maintained versions. Run unique checks only in the last
     - node_js: 4
+      script: npm run test:node
     - node_js: 6
+      script: npm run test:node
     - node_js: 8
+      script: npm run test:node
     - node_js: 9
       script:
         - npm run test
