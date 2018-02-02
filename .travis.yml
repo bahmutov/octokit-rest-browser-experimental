@@ -1,3 +1,5 @@
+dist: trusty
+os: linux
 addons:
   chrome: stable
 language: node_js
