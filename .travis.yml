@@ -1,5 +1,4 @@
-dist: trusty
-os: linux
+sudo: required
 addons:
   chrome: stable
 language: node_js
@@ -33,9 +32,13 @@ jobs:
       script: npm run test:node
     - node_js: 9
       script:
-        - "export DISPLAY=:99.0"
-        - "sh -e /etc/init.d/xvfb start"
+        # make puppeteer work
+        - sudo chown root /opt/google/chrome/chrome-sandbox
+        - sudo chmod 4755 /opt/google/chrome/chrome-sandbox
+        - export DISPLAY=:99.0
+        - sh -e /etc/init.d/xvfb start
         - sleep 3 # give xvfb some time to start
+        # do actual tests
         - npm run test
         - npm run coverage:upload
         - npm run validate:ts
